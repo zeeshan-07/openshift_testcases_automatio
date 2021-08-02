@@ -1,6 +1,6 @@
 # openshift_testcases_automatio
 Features list
- * OpenShift Baic Validation
+ * OpenShift Basic Validation
  * SR IOV 
  * DPDK 
  * PPDM
