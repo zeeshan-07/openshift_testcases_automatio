@@ -1,4 +1,4 @@
-# openshift_testcases_automatio
+# openshift_testcases_automation
 Features list
  * OpenShift Basic Validation
  * SR IOV 
