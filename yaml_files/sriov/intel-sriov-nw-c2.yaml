@@ -1,0 +1,10 @@
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetwork
+metadata:
+  name: compute-2-vf0-sriov-network
+  namespace: openshift-sriov-network-operator
+spec:
+  resourceName: compute_2_net_devices
+  networkNamespace: openshift-sriov-network-operator
+  ipam: '{"type":"static","addresses": [{"address":"192.168.160.51/24", "gateway":"192.168.160.1"}],"routes": [{"dst":"192.168.60.0/24","gw":"192.168.160.1"}]}'
+  capabilities: '{"mac": true, "ips": true}'

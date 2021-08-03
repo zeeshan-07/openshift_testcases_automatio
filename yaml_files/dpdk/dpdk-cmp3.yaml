@@ -1,0 +1,15 @@
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: mellanox-dpdk-node-policy
+  namespace: openshift-sriov-network-operator
+spec:
+  resourceName: mellanoxnics
+  nodeSelector:
+    node-role.kubernetes.io/worker-cnf: ""
+  numVfs: 5
+  nicSelector:
+    pfNames: ["ens3f0"]
+    rootDevices: ["0000:d8:00.0"]
+  deviceType: netdevice
+  isRdma: true

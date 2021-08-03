@@ -1,0 +1,24 @@
+---
+ apiVersion: v1
+ kind: Pod
+ metadata:
+   name: rss-site
+   labels:
+     app: web
+   namespace: openshift-sriov-network-operator
+   annotations:
+     k8s.v1.cni.cncf.io/networks: compute-1-vf0-sriov-network
+        # nodeSelector:
+        #kubernetes.io/hostname: r191c1.dsp.lab
+ spec:
+   nodeSelector:
+     kubernetes.io/hostname: r191c1.dsp.lab
+   containers:
+     - name: front-end
+       image: nginx
+       ports:
+         - containerPort: 80
+     - name: rss-reader
+       image: nickchase/rss-php-nginx:v1
+       ports:
+         - containerPort: 88

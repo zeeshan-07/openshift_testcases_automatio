@@ -1,0 +1,30 @@
+# PerformanceProfile for real time kernel
+# Using SMT
+# Hardware Used: PowerEdge XE2420 Servers
+apiVersion: performance.openshift.io/v1
+kind: PerformanceProfile
+metadata:
+  name: r640-performanceprofile
+spec:
+  additionalKernelArgs:
+    - nmi_watchdog=0
+    - audit=0
+    - mce=off
+    - processor.max_cstate=1
+    - idle=poll
+    - intel_idle.max_cstate=0
+  cpu:
+    isolated: "2-43,46-87"
+    reserved: "0,1,44,45"
+  hugepages:
+    defaultHugepagesSize: 1G
+    pages:
+    - size: "1G"
+      count: 16
+  realTimeKernel:
+    enabled: true
+  numa:
+    topologyPolicy: "restricted"
+    # topologyPolicy: "best-effort" # May change performance, but this can be used
+  nodeSelector:
+    node-role.kubernetes.io/worker-cnf: ""

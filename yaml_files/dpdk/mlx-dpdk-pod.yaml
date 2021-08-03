@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: compute-1-poda
+  namespace: openshift-sriov-network-operator
+  annotations:
+    k8s.v1.cni.cncf.io/networks: cmp1-sriov-network
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: cmp1.dsp.lab
+  containers:
+  - name: example-pod
+    command: ["/bin/bash", "-c", "sleep 2000000000000"]
+    image: centos/tools
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: compute-1-podb
+  namespace: openshift-sriov-network-operator
+  annotations:
+    k8s.v1.cni.cncf.io/networks: cmp1-sriov-network-2nd
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: cmp1.dsp.lab
+  containers:
+  - name: example-pod2
+    command: ["/bin/bash", "-c", "sleep 2000000000000"]
+    image: centos/tools
