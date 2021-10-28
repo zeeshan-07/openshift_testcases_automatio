@@ -1,10 +1,11 @@
-import paramiko
+#import paramiko
 import requests
 import json
 import yaml
 from yaml.loader import SafeLoader
 import os
 import sys
+from comman_fun.commam_functions import *
 
 def main(arg):
     print("openshift automation")
@@ -29,6 +30,7 @@ def main(arg):
     print ("The script has the name %s" % (arg))
 
 
+#Read node.yaml file from Csah node 
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(host, port, username, password)
@@ -43,9 +45,7 @@ def main(arg):
         print("\nFile not found!!! Exception Occurred \n")
 
 
-#get Csah public ip and openshift user
-    print(nodes_data_loaded["bootstrap_kvm"])
- #   print ("The script has the name %s" % (arg))
-
-
-main(sys.argv[1])
+#main(sys.argv[1])
+generate_token()
+create_serviceaccount_for_token()
+delete_serviceaccount_for_token()
